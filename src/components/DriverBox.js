@@ -90,14 +90,14 @@ class DriverBox extends Component {
                     iconUrl={licenseIconUrl}
                     style={{marginBottom: 25}}
                />
-               <div className="fill"><img src={license_photo_url} /></div>
+               <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" /></div>
 
                <TextWithIcon
                    text={"Patente del auto"}
                    iconUrl={patente}
                    style={{marginBottom: 25}}
                />
-               <div className="fill"><img src={car_plate_photo_url} /></div>
+               <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado" /></div>
                <Link to={"/" + this.props.artist.id}>
                    <button id="b1" disabled={status != "No confirmado"} onClick={this.handleConfirm}>
                        Confirmar registro
