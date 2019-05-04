@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import {toggleArtistAsFavorite} from "../store/actions/favorites";
 
+import TripBox from "./TripBox";
 import ArtistImage from "./ArtistImage";
 import TextWithIcon from "./TextWithIcon";
 import GenreBar from "./GenreBar";
@@ -23,7 +24,7 @@ class DriverBox extends Component {
         super(props);
 
         this.state = {
-            viajes: 0,
+            viajes: [],
         };
     }
 
@@ -37,14 +38,13 @@ class DriverBox extends Component {
                 console.log(trips);
                 console.log(trips.length);
                 this.setState({
-                    viajes: trips.length != null ? trips.length : 0
+                    viajes: trips
                 });
             }).catch(() => {
             console.log("error");
             this.setState({
-                    viajes: 0
-                }
-            )
+                viajes: []
+            })
         });
     }
 
@@ -68,43 +68,62 @@ class DriverBox extends Component {
         } = artist;
 
         return (
-           <div> <div >
-                <ArtistImage source={imageUrl} favorited={status != "No confirmado"}/>
-                <h3>{name}</h3>
-                <StarRatingComponent
-                    starCount={5}
-                    value={rating ? rating : 0}
-                />
-                <TextWithIcon
-                    text={`${this.state.viajes} viajes realizados`}
-                    iconUrl={followersIconUrl}
-                    style={{marginBottom: 25}}
-                />
-                {/*<h4 style={{marginBottom: 25}}>{car}</h4>*/}
+           <div>
+               <div className="Driver-profile">
+                    <ArtistImage source={imageUrl} favorited={status != "No confirmado"}/>
+                    <h3>{name}</h3>
+                    <StarRatingComponent
+                        starCount={5}
+                        value={rating ? rating : 0}
+                    />
+                    <TextWithIcon
+                        text={`${this.state.viajes.length} viajes realizados`}
+                        iconUrl={followersIconUrl}
+                        style={{marginBottom: 25}}
+                    />
+                    {/*<h4 style={{marginBottom: 25}}>{car}</h4>*/}
 
+                   <TextWithIcon
+                        text={"Licencia de conducir"}
+                        iconUrl={licenseIconUrl}
+                        style={{marginBottom: 25}}
+                   />
+                   <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" /></div>
 
-
-            </div>
-               <TextWithIcon
-                    text={"Licencia de conducir"}
-                    iconUrl={licenseIconUrl}
-                    style={{marginBottom: 25}}
-               />
-               <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" /></div>
-
-               <TextWithIcon
-                   text={"Patente del auto"}
-                   iconUrl={patente}
-                   style={{marginBottom: 25}}
-               />
-               <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado" /></div>
-               <Link to={"/" + this.props.artist.id}>
-                   <button id="b1" disabled={status != "No confirmado"} onClick={this.handleConfirm}>
-                       Confirmar registro
-                   </button>
-               </Link>
+                   <TextWithIcon
+                       text={"Patente del auto"}
+                       iconUrl={patente}
+                       style={{marginBottom: 25}}
+                   />
+                   <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado" /></div>
+                   <Link to={"/" + this.props.artist.id}>
+                       <button id="b1" disabled={status != "No confirmado"} onClick={this.handleConfirm}>
+                           Confirmar registro
+                       </button>
+                   </Link>
+               </div>
+               <div className="Driver-trips">
+                   <h3>Viajes</h3>
+                   {this.rendertrips(this.state.viajes)}
+               </div>
            </div>
     );
+    }
+
+    rendertrips = (viajes) => {
+        let result = [];
+        console.log(viajes);
+        for (let i = 0; i < viajes.length; i++) {
+          result.push(<TripBox
+              key={viajes[i].id}
+              client={viajes[i].client}
+              price={viajes[i].price}
+              duration={viajes[i].duration}
+              rating={viajes[i].rating}
+              comment={viajes[i].comment}
+              />)
+        }
+        return result;
     }
 
     handleConfirm =() => {

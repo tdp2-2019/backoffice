@@ -33,40 +33,33 @@ class DriverScreen extends Component {
         console.log(this.props.match.params.driverId);
 
         fetch("https://correapp-api.herokuapp.com/drivers/" + this.props.match.params.driverId)
-            .then(response => {
-                const d = response.json();
-                return d;
-            })
+            .then(response => response.json())
             .then(driver => formatArtistData(driver))
             .then(driver => {
                 console.log(driver);
                 this.setState({
                     driver: driver
                 });
-                this.state = {driver: driver};
-                console.log(this.state);
             });
     }
 
     render() {
-
-        console.log(this.state);
-        console.log("Arriba va el state en el render");
-
-        console.log(this.state);
-
-        return (<DriversList artists={[this.state.driver]} />);
+        return (
+          <div className="Screen">
+            <DriversList artists={[this.state.driver]} />
+          </div>
+        );
 
     }
 
 }
 
 const formatArtistData = ({
-                              id, name,
-                              images,
-                              photo_url, licensenumber, carcolour, license_photo_url, car_plate_photo_url,status,
-                              brand, carlicenseplate, address, dni, email, lastname, model, rating, signup_date, telephone
-                          }) => ({
+      id, name,
+      images,
+      photo_url, licensenumber, carcolour, license_photo_url, car_plate_photo_url,status,
+      brand, carlicenseplate, address, dni, email, lastname, model, rating, signup_date, telephone
+  }) => ({
     id,
     name: name + " " + lastname,
     car_plate_photo_url,

@@ -324,3 +324,18 @@ h1 {
 .image-driver-profile {
     padding-bottom: 25px;
 }
+
+.Driver-profile {
+  width: 25%;
+  float: left;
+}
+.Driver-trips {
+  width: 75%;
+  float: left;
+}
+.TripBox {
+    border: 1px solid #fff;
+    float: left;
+    margin: 5px;
+    padding: 5px 20px;
+}
