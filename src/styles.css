@@ -1,0 +1,318 @@
+body {
+  font-family: "Lato", sans-serif;
+  background-image: linear-gradient(
+      to right bottom,
+      rgb(77, 77, 77),
+      rgb(0, 0, 0)
+    ),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
+  margin: 0;
+  color: white;
+}
+.img {
+    padding:0;
+    position:relative;
+    overflow:hidden;
+    background-size:cover;
+}
+h1 {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 3em;
+}
+
+.App {
+  text-align: center;
+  overflow: auto;
+  height: 100vh;
+  display: flex;
+}
+
+.App.light {
+  background-image: linear-gradient(
+      to right bottom,
+      rgb(255, 255, 255),
+      rgb(220, 220, 220)
+    ),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
+  color: #333;
+}
+.App button {
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 500px;
+  padding: 10px 25px 11px;
+}
+
+.App button:focus {
+  outline: none;
+}
+
+.App button:hover {
+  background-color: #5196FF;
+}
+
+.App button:active {
+  background-color: #5196FF;
+}
+
+.Sidebar {
+  background: black;
+  text-align: left;
+  padding: 20px;
+}
+
+.light .Sidebar {
+  background: #eee;
+}
+
+.Sidebar img {
+  width: 80px;
+}
+
+.Sidebar-item {
+  text-decoration: none;
+  color: white;
+}
+
+.light .Sidebar-item {
+  color: #333;
+}
+
+.Sidebar-selected {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.Screen {
+  padding: 40px 20px;
+  overflow: auto;
+  width: 100%;
+}
+
+.Header {
+  position: relative;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.Header span {
+  font-size: 0.5em;
+  font-weight: normal;
+  padding-left: 10px;
+}
+
+.SearchBar {
+  background: #555;
+  padding: 10px;
+  width: 250px;
+}
+
+.SearchBar input {
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  background: #555;
+}
+
+.light .SearchBar {
+  background: #ddd;
+}
+
+.light .SearchBar input {
+  color: #333;
+  background: #ddd;
+}
+
+.SearchBar input:focus {
+  outline: none;
+}
+
+.SearchBar img {
+  width: 20px;
+  margin: 5px 5px 0;
+}
+
+.ArtistBox {
+  float: left;
+  padding: 15px;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ArtistBox h3 {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ArtistImage {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+}
+
+.ArtistImage-image {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.ArtistImage-fav {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+}
+
+.TextWithIcon {
+  display: block;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+.TextWithIcon img {
+  width: 20px;
+  margin-bottom: -5px;
+  margin-right: 5px;
+}
+
+.Modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modal h2 {
+  margin-top: 0;
+}
+
+.Modal-box {
+  position: relative;
+  background: #555;
+  width: 60%;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.light .Modal-box {
+  background: #ddd;
+  color: #333;
+}
+
+.Modal-close {
+  position: absolute;
+  width: 20px;
+  right: 20px;
+  top: 20px;
+}
+
+.Modal-close:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.Modal-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.GenreBar {
+  position: relative;
+  color: #888888;
+}
+
+.GenreBar button {
+  background: none;
+  padding: 0;
+  margin-left: 5px;
+  color: #1db954;
+}
+
+.GenreBar button:hover {
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Genre-pill {
+  border: 2px solid white;
+  border-radius: 500px;
+  padding: 10px 25px 11px;
+  margin: 5px;
+}
+
+.light .Genre-pill {
+  border: 2px solid #333;
+}
+
+.ErrorScreen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Settings {
+  border-top: 1px solid #444;
+  margin-top: 50px;
+  padding-top: 15px;
+}
+
+.Settings span {
+  font-size: 0.95em;
+  display: block;
+  padding-bottom: 5px;
+}
+
+.Paginator {
+  display: flex;
+  flex-direction: column;
+}
+
+.Paginator-content {
+  margin-bottom: 20px;
+}
+
+.Paginator-controls a {
+  display: inline-block;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 5px;
+  min-width: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Paginator-controls a:hover,
+.light .Paginator-controls a:hover {
+  color: #1db954;
+  border-color: #1db954;
+}
+
+.light .Paginator-controls a {
+  color: #333;
+  border-color: #333;
+}
+
+.Paginator-controls span {
+  padding-left: 10px;
+}
