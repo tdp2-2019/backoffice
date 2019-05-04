@@ -61,11 +61,13 @@ class Paginator extends Component {
           {pageItems.map(item => this.props.renderItem(item))}
         </div>
         <div className="Paginator-controls">
-          {!isFirstPage && <a onClick={this.goToPrev}>Prev</a>}
-          {!isLastPage && <a onClick={this.goToNext}>Next</a>}
-          <span>
-            Page {currentPage + 1} of {lastPage}
-          </span>
+          {!isFirstPage && <a onClick={this.goToPrev}>Anterior</a>}
+          {!isLastPage && <a onClick={this.goToNext}>Siguiente</a>}
+          {lastPage > 1 &&
+              <span>
+                Página {currentPage + 1} de {lastPage}
+              </span>
+          }
         </div>
       </div>
     );

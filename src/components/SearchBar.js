@@ -16,7 +16,7 @@ class SearchBar extends Component {
           src="https://static.thenounproject.com/png/101791-200.png"
           alt="search"
         />
-        <input onInput={this.handleOnInput} placeholder="Filter" />
+        <input onInput={this.handleOnInput} placeholder="Filtrar" />
       </div>
     );
   }

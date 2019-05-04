@@ -24,10 +24,9 @@ class Sidebar extends Component {
 
     return (
       <nav className="Sidebar">
-        <img
-          src="https://d2rp9bqx0m7ihv.cloudfront.net/media/1/photos/products/109597/109597-9330725003224-01_1_g.png"
-          alt="logo"
-        />
+        <p>
+            C O R R E A P P
+        </p>
 
         <NavLink
           to="/"
@@ -41,18 +40,6 @@ class Sidebar extends Component {
             style={buttonStyle}
           />
         </NavLink>
-
-
-        <div className="Settings">
-          <span>Select a theme</span>
-          <select onChange={this.handleOnChangeTheme} value={theme}>
-            {Object.keys(themes).map(k => (
-              <option key={k} value={k}>
-                {themes[k]}
-              </option>
-            ))}
-          </select>
-        </div>
       </nav>
     );
   }
