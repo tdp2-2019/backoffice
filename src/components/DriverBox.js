@@ -31,21 +31,24 @@ class DriverBox extends Component {
     componentDidMount() {
 
         console.log(this.props);
-
-        fetch("https://correapp-api.herokuapp.com/trips?status=finished&driver_id=" + this.props.artist.id)
-            .then(response => response.json())
-            .then(trips => {
-                console.log(trips);
-                console.log(trips.length);
+        if(this.props.artist.id == null){
+            console.log("Nulleable");
+        } else {
+            fetch("https://correapp-api.herokuapp.com/trips?status=finished&driver_id=" + this.props.artist.id)
+                .then(response => response.json())
+                .then(trips => {
+                    console.log(trips);
+                    console.log(trips.length);
+                    this.setState({
+                        viajes: trips
+                    });
+                }).catch(() => {
+                console.log("error");
                 this.setState({
-                    viajes: trips
-                });
-            }).catch(() => {
-            console.log("error");
-            this.setState({
-                viajes: []
-            })
-        });
+                    viajes: []
+                })
+            });
+        }
     }
 
 
