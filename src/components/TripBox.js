@@ -24,7 +24,8 @@ class TripBox extends Component {
                  style={{marginBottom: 25}}
              />
              <TextWithIcon
-                 text={Math.floor(this.props.duration / 60) + ":" + this.props.duration % 60 + " hs."}
+                 text={this.props.duration > 3600 ? Math.floor(this.props.duration / 360) + " horas" : Math.floor(this.props.duration / 60) + " minutos "}
+                 //text={Math.floor(this.props.duration / 60) + " minutos"}
                  iconUrl={durationIconUrl}
                  style={{marginBottom: 25}}
              />
