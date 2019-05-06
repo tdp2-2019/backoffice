@@ -19,7 +19,7 @@ class TripBox extends Component {
            <div className="TripBox">
              <p className="client">{this.props.client}</p>
              <TextWithIcon
-                 text={"$ " + this.props.price}
+                 text={"$ " + Number(this.props.price).toFixed(2)}
                  iconUrl={priceIconUrl}
                  style={{marginBottom: 25}}
              />
