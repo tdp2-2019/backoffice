@@ -32,14 +32,14 @@ class TripBox extends Component {
              <p>{Math.floor(this.props.duration / 60) + ":" + this.props.duration % 60 + " hs."}</p>
              <StarRatingComponent
                  starCount={5}
-                 value={this.propsrating != null ? this.propsrating.rating : 0}
+                 value={this.props.viaje.driver_rating != null ? this.props.viaje.driver_rating.rating : 0}
              />
              <TextWithIcon
                  text="Comentario"
                  iconUrl={commentIconUrl}
                  style={{marginBottom: 25}}
              />
-             <p>{this.props.comment}</p>
+             <p>{this.props.viaje.driver_rating != null ? this.props.viaje.driver_rating.comment : "Comentario"}</p>
            </div>
        );
     }

@@ -80,7 +80,7 @@ class DriverBox extends Component {
                         value={rating ? rating : 0}
                     />
                     <TextWithIcon
-                        text={`${this.state.viajes.length} viajes realizados`}
+                        text={`${this.state.viajes.length != null ? this.state.viajes.length : 0} viajes realizados`}
                         iconUrl={followersIconUrl}
                         style={{marginBottom: 25}}
                     />
@@ -124,6 +124,7 @@ class DriverBox extends Component {
               duration={viajes[i].duration}
               rating={viajes[i].rating}
               comment={viajes[i].comment}
+              viaje={viajes[i]}
               />)
         }
         return result;
