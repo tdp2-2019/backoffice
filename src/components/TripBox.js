@@ -19,27 +19,24 @@ class TripBox extends Component {
            <div className="TripBox">
              <p className="client">{this.props.client}</p>
              <TextWithIcon
-                 text="Precio"
+                 text={"$ " + this.props.price}
                  iconUrl={priceIconUrl}
                  style={{marginBottom: 25}}
              />
-             <p>$ {this.props.price}</p>
              <TextWithIcon
-                 text="Duración"
+                 text={Math.floor(this.props.duration / 60) + ":" + this.props.duration % 60 + " hs."}
                  iconUrl={durationIconUrl}
                  style={{marginBottom: 25}}
              />
-             <p>{Math.floor(this.props.duration / 60) + ":" + this.props.duration % 60 + " hs."}</p>
              <StarRatingComponent
                  starCount={5}
                  value={this.props.viaje.driver_rating != null ? this.props.viaje.driver_rating.rating : 0}
              />
              <TextWithIcon
-                 text="Comentario"
+                 text={this.props.viaje.driver_rating != null ? this.props.viaje.driver_rating.comment : "Comentario"}
                  iconUrl={commentIconUrl}
                  style={{marginBottom: 25}}
              />
-             <p>{this.props.viaje.driver_rating != null ? this.props.viaje.driver_rating.comment : "Comentario"}</p>
            </div>
        );
     }
