@@ -25,10 +25,12 @@ class DriverBox extends Component {
 
         this.state = {
             viajes: [],
+            confirmado : this.props.artist.status
         };
     }
 
     componentDidMount() {
+
 
         console.log(this.props);
         if(this.props.artist.id == null){
@@ -69,11 +71,11 @@ class DriverBox extends Component {
             imageUrl, name, followersCount, address,
             dni, carlicenseplate, genres, rating, car, car_plate_photo_url, license_photo_url, status
         } = artist;
-
+        console.log("Rendereo");
         return (
            <div>
                <div className="Driver-profile">
-                    <ArtistImage source={imageUrl} favorited={status != "No confirmado"}/>
+                    <ArtistImage source={imageUrl} favorited={this.state.confirmado !== "No confirmado"}/>
                     <h3>{name}</h3>
                     <StarRatingComponent
                         starCount={5}
@@ -91,17 +93,17 @@ class DriverBox extends Component {
                         iconUrl={licenseIconUrl}
                         style={{marginBottom: 25}}
                    />
-                   <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" /></div>
+                   <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" width="250" height="250" /></div>
 
                    <TextWithIcon
                        text={"Patente del auto"}
                        iconUrl={patente}
                        style={{marginBottom: 25}}
                    />
-                   <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado" /></div>
+                   <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado"  width="250" height="250" /></div>
                    <Link to={"/" + this.props.artist.id}>
-                       <button id="b1" disabled={status != "No confirmado"} onClick={this.handleConfirm}>
-                           Confirmar registro
+                       <button id="b1" onClick={this.handleConfirm}>
+                           {this.state.confirmado === "No confirmado" ? "Confirmar registro" : "Deshabilitar"}
                        </button>
                    </Link>
                </div>
@@ -131,14 +133,24 @@ class DriverBox extends Component {
     }
 
     handleConfirm =() => {
-        const data = {status:"Confirmado"};
-        fetch('https://correapp-api.herokuapp.com/drivers/' + this.props.artist.id, {
+        var data = {status:"Confirmado"};
+        if(this.state.confirmado !== "No confirmado"){
+            data = {status: "No confirmado"};
+        }
+        console.log(data);
+        //fetch('http://127.0.0.1:5000/drivers/' + this.props.artist.id, {
+            fetch('https://correapp-api.herokuapp.com/drivers/' + this.props.artist.id, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+        }).then(() => {
+                console.log(this.state);
+                console.log("Cambie el state");
+                this.setState({confirmado: data.status});
+                console.log(this.state);
+            });
     }
 }
 
