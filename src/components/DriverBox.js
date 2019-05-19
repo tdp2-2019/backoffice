@@ -82,7 +82,7 @@ class DriverBox extends Component {
                         value={rating ? rating : 0}
                     />
                     <TextWithIcon
-                        text={`${this.state.viajes.length} viajes realizados`}
+                        text={`${this.state.viajes.length != null ? this.state.viajes.length : 0} viajes realizados`}
                         iconUrl={followersIconUrl}
                         style={{marginBottom: 25}}
                     />
@@ -93,14 +93,14 @@ class DriverBox extends Component {
                         iconUrl={licenseIconUrl}
                         style={{marginBottom: 25}}
                    />
-                   <div className="fill image-driver-profile"><img src={license_photo_url} alt="No ingresado" width="250" height="250" /></div>
+                   <div className="fill image-driver-profile" class="center"><img src={license_photo_url} alt="No ingresado" width="250" height="250" class="center"/></div>
 
                    <TextWithIcon
                        text={"Patente del auto"}
                        iconUrl={patente}
                        style={{marginBottom: 25}}
                    />
-                   <div className="fill image-driver-profile"><img src={car_plate_photo_url}  alt="No ingresado"  width="250" height="250" /></div>
+                   <div className="fill image-driver-profile" class="center"><img src={car_plate_photo_url}  alt="No ingresado"  width="250" height="250" /></div>
                    <Link to={"/" + this.props.artist.id}>
                        <button id="b1" onClick={this.handleConfirm}>
                            {this.state.confirmado === "No confirmado" ? "Confirmar registro" : "Deshabilitar"}
@@ -126,6 +126,7 @@ class DriverBox extends Component {
               duration={viajes[i].duration}
               rating={viajes[i].rating}
               comment={viajes[i].comment}
+              viaje={viajes[i]}
               />)
         }
         return result;
