@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import Screen from "./Screen";
 
 
-
 import TripList from "../components/TripList";
 
 class TripsScreen extends Component {
@@ -34,11 +33,47 @@ class TripsScreen extends Component {
                 console.log(trips);
                 console.log(trips.errorCode);
 
-                if(trips.errorCode == 2){
+                if (trips.errorCode == 2) {
                     return [];
                 }
 
-                return trips.map(formatTripData) ;
+                return trips.map(formatTripData);
+            })
+            .then(function (jsonStr) {
+                console.log("FROMATEOADE");
+                console.log("HOLAAr");
+
+                console.log(jsonStr);
+                console.log(jsonStr);
+                console.log("HOLAAr");
+                return jsonStr;
+            }).then(res => this.setState({trips: res}));
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    tick() {
+        fetch("https://correapp-api.herokuapp.com/trips?status=started")
+            .then(function (response) {
+                console.log("RESPONSE");
+
+                console.log(response);
+                return response.json();
+            })
+            .then(function (trips) {
+                console.log("PARSEADO");
+
+                console.log(trips);
+                console.log(trips.errorCode);
+
+                if (trips.errorCode == 2) {
+                    return [];
+                }
+
+                return trips.map(formatTripData);
             })
             .then(function (jsonStr) {
                 console.log("FROMATEOADE");

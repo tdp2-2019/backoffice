@@ -44,11 +44,28 @@ class TripScreen extends Component {
                     trip: trip
                 });
             });
+        this.interval = setInterval(() => this.tick(), 8000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    tick() {
+        fetch("https://correapp-api.herokuapp.com/trips/" + this.props.match.params.tripId)
+            .then(response => response.json())
+            .then(trip => formatTripData(trip))
+            .then(trip => {
+                console.log(trip);
+                this.setState({
+                    trip: trip
+                });
+            });
     }
 
 
     render() {
-        const center ={
+        const center = {
             center: {
                 lat: this.state.trip.currentposition ? this.state.trip.currentposition.lat : -54.785,
                 lng: this.state.trip.currentposition ? this.state.trip.currentposition.long : -80
@@ -57,7 +74,9 @@ class TripScreen extends Component {
         return (
             <div className="Screen">
                 <Header title={"Viaje #" + this.state.trip.id}/>
-                <MyGoogleMap defaultCenter={center}positionLat={this.state.trip.currentposition ? this.state.trip.currentposition.lat : -54.785} positionLng={this.state.trip.currentposition ? this.state.trip.currentposition.long : -80}/>
+                <MyGoogleMap defaultCenter={center}
+                             positionLat={this.state.trip.currentposition ? this.state.trip.currentposition.lat : -54.785}
+                             positionLng={this.state.trip.currentposition ? this.state.trip.currentposition.long : -80}/>
                 {/*<DriversList artists={[this.state.driver]}/>*/}
                 <Link to={"/trips/"}>
                     <button id="b1">
