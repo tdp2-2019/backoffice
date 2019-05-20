@@ -10,6 +10,7 @@ import {isFavorite} from "../store/selectors";
 import StarRatingComponent from 'react-star-rating-component';
 import DriverScreen from "../screens/DriverScreen";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import ArtistBoxTextWithIcon from "./ArtistBoxTextWithIcon";
 
 
 const followersIconUrl =
@@ -68,19 +69,23 @@ class ArtistBox extends Component {
         console.log(status);
         return (
             <div className="ArtistBox">
+
+
                 <ArtistImage source={imageUrl} favorited={status != "No confirmado"}/>
                 <h3>{name}</h3>
                 <StarRatingComponent
                     starCount={5}
                     value={rating ? rating : 0}
                 />
-                <TextWithIcon
+                <ArtistBoxTextWithIcon
                     text={`${this.state.viajes} viajes realizados`}
                     iconUrl={followersIconUrl}
                     style={{marginBottom: 25}}
                 />
                 <h4 style={{marginBottom: 25}}>{car}</h4>
-                <Link to={"/" + this.props.artist.id}>
+                <h4 style={{marginBottom: 25}}>Activo</h4>
+
+                <Link to={"/drivers/" + this.props.artist.id}>
                     <button id="b1">
                         Ver perfil
                     </button>

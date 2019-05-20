@@ -13,6 +13,8 @@ import DriverScreen from "../screens/DriverScreen";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import licenseIconUrl from '../driver-license-icon.jpg';
 import patente from '../patente.png'
+import DriverImage from "./DriverImage";
+import BlockButton from "./BlockButton";
 
 const followersIconUrl =
     "https://image.flaticon.com/icons/png/512/747/747835.png";
@@ -75,8 +77,10 @@ class DriverBox extends Component {
         return (
            <div>
                <div className="Driver-profile">
-                    <ArtistImage source={imageUrl} favorited={this.state.confirmado !== "No confirmado"}/>
+                    <DriverImage source={imageUrl} favorited={this.state.confirmado == "Confirmado"} blocked={this.state.confirmado == "Bloqueado"}/>
                     <h3>{name}</h3>
+                   <BlockButton id={this.props.artist.id} blocked={this.state.confirmado == "Bloqueado"} handler={this.handleBlock.bind(this)}/>
+
                     <StarRatingComponent
                         starCount={5}
                         value={rating ? rating : 0}
@@ -103,12 +107,15 @@ class DriverBox extends Component {
                    <div className="fill image-driver-profile" class="center"><img src={car_plate_photo_url}  alt="No ingresado"  width="250" height="250" /></div>
                    <Link to={"/" + this.props.artist.id}>
                        <button id="b1" onClick={this.handleConfirm}>
-                           {this.state.confirmado === "No confirmado" ? "Confirmar registro" : "Deshabilitar"}
+                           Confirmar
+                       </button>
+                       <button id="b12" onClick={this.handleReject}>
+                           Rechazar
                        </button>
                    </Link>
                </div>
                <div className="Driver-trips">
-                   <h3>Viajes</h3>
+                   <h3>{this.state.viajes.length != null && this.state.viajes.length != 0 ? "Viajes" : ""}</h3>
                    {this.rendertrips(this.state.viajes)}
                </div>
            </div>
@@ -134,9 +141,9 @@ class DriverBox extends Component {
 
     handleConfirm =() => {
         var data = {status:"Confirmado"};
-        if(this.state.confirmado !== "No confirmado"){
-            data = {status: "No confirmado"};
-        }
+        // if(this.state.confirmado !== "No confirmado"){
+        //     data = {status: "No confirmado"};
+        // }
         console.log(data);
         //fetch('http://127.0.0.1:5000/drivers/' + this.props.artist.id, {
             fetch('https://correapp-api.herokuapp.com/drivers/' + this.props.artist.id, {
@@ -152,6 +159,49 @@ class DriverBox extends Component {
                 console.log(this.state);
             });
     }
+
+    handleReject =() => {
+        var data = {status:"Rechazado"};
+        // if(this.state.confirmado !== "No confirmado"){
+        //     data = {status: "No confirmado"};
+        // }
+        console.log(data);
+        //fetch('http://127.0.0.1:5000/drivers/' + this.props.artist.id, {
+        fetch('https://correapp-api.herokuapp.com/drivers/' + this.props.artist.id, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            console.log(this.state);
+            console.log("Cambie el state");
+            this.setState({confirmado: data.status});
+            console.log(this.state);
+        });
+    }
+
+    handleBlock =() => {
+        var data = {status:"Bloqueado"};
+        if(this.state.confirmado == "Bloqueado"){
+            data = {status: "No confirmado"};
+        }
+        console.log(data);
+        //fetch('http://127.0.0.1:5000/drivers/' + this.props.artist.id, {
+        fetch('https://correapp-api.herokuapp.com/drivers/' + this.props.artist.id, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            console.log(this.state);
+            console.log("Cambie el state");
+            this.setState({confirmado: data.status});
+            console.log(this.state);
+        });
+    }
+
 }
 
 const mapStateToProps = (state, ownProps) => {
