@@ -105,7 +105,7 @@ class DriverBox extends Component {
                        style={{marginBottom: 25}}
                    />
                    <div className="fill image-driver-profile" class="center"><img src={car_plate_photo_url}  alt="No ingresado"  width="250" height="250" /></div>
-                   <Link to={"/" + this.props.artist.id}>
+                   <Link to={"/drivers/" + this.props.artist.id}>
                        <button id="b1" onClick={this.handleConfirm}>
                            Confirmar
                        </button>

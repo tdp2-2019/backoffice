@@ -193,14 +193,17 @@ h1 {
   display: inline;
   margin: 0 auto;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
 }
 
 .ArtistImage-fav {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
+    position: sticky;
+    bottom: 0;
+    margin-right: 20px;
 }
 
 

@@ -11,6 +11,7 @@ import StarRatingComponent from 'react-star-rating-component';
 import DriverScreen from "../screens/DriverScreen";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import ArtistBoxTextWithIcon from "./ArtistBoxTextWithIcon";
+import DriverImage from "./DriverImage";
 
 
 const followersIconUrl =
@@ -69,9 +70,7 @@ class ArtistBox extends Component {
         console.log(status);
         return (
             <div className="ArtistBox">
-
-
-                <ArtistImage source={imageUrl} favorited={status != "No confirmado"}/>
+                <ArtistImage source={imageUrl} favorited={status == "Confirmado"} blocked={status == "Bloqueado"}/>
                 <h3>{name}</h3>
                 <StarRatingComponent
                     starCount={5}

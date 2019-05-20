@@ -14,7 +14,7 @@ class BlockButton extends Component {
         return (
 
             <div className="BlockButton">
-                <Link to={"/" + id}>
+                <Link to={"/drivers/" + id}>
                     <button id="b1" onClick={this.props.handler}>
                         {blocked ? "Desbloquear" : "Bloquear"}
                     </button>
