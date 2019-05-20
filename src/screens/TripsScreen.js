@@ -32,7 +32,8 @@ class TripsScreen extends Component {
                 console.log("PARSEADO");
 
                 console.log(trips);
-                return trips.map(formatTripData)
+                
+                return trips.id ? trips.map(formatTripData) : [];
             })
             .then(function (jsonStr) {
                 console.log("FROMATEOADE");
