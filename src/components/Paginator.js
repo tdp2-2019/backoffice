@@ -35,6 +35,7 @@ class Paginator extends Component {
   isFirstPage = () => this.state.currentPage === 0;
 
   getNumberOfPages() {
+    console.log(this.props);
     const { items, pageSize } = this.props;
     return Math.ceil(items.length / pageSize);
   }

@@ -13,10 +13,13 @@ class TripBox extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
+        console.log("Soy un tripBox");
+
+        console.log(this.props);
         return (
            <div className="TripBox">
+               {/*<h1>{this.props.id} </h1>*/}
              <p className="client">{this.props.client}</p>
              <TextWithIcon
                  text={"$ " + Number(this.props.price).toFixed(2)}

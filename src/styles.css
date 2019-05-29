@@ -45,17 +45,42 @@ h1 {
   padding: 10px 25px 11px;
 }
 
+.BlockButton button {
+  background-color: #f31924;
+  border: none;
+  border-radius: 500px;
+  padding: 10px 25px 11px;
+}
+.BlockButton button:focus {
+  outline: none;
+}
+
+.BlockButton button:hover {
+  background-color: #f32835;
+}
+
+.BlockButton button:active {
+  background-color: #830d11;
+}
+
+
+
+
+
+
+
+
 .App button:focus {
   outline: none;
 }
 
-.App button:hover {
-  background-color: #5196FF;
-}
+/*.App button:hover {*/
+  /*background-color: #5196FF;*/
+/*}*/
 
-.App button:active {
-  background-color: #5196FF;
-}
+/*.App button:active {*/
+  /*background-color: #5196FF;*/
+/*}*/
 
 .Sidebar {
   width: 160px;
@@ -139,26 +164,56 @@ h1 {
 }
 
 .ArtistBox {
-  float: left;
+  display: block;
   padding: 15px;
-  width: 200px;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .ArtistBox h3 {
-  margin: 0;
+  display: inline;
+  margin: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.ArtistBox h4 {
+  display: inline;
+  margin: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .ArtistImage {
+  display: inline;
   position: relative;
   text-align: center;
   padding: 10px;
 }
 
 .ArtistImage-image {
+  display: inline;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+
+.ArtistImage-fav {
+    width: 30px;
+    height: 30px;
+    position: sticky;
+    bottom: 0;
+    margin-right: 20px;
+}
+
+
+.DriverImage {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+}
+
+.DriverImage-image {
   display: block;
   margin: 0 auto;
   border-radius: 50%;
@@ -167,11 +222,36 @@ h1 {
   object-fit: cover;
 }
 
-.ArtistImage-fav {
+.DriverImage-fav {
   width: 50px;
   height: 50px;
   position: absolute;
   bottom: 0;
+}
+.GoogleMarkerImage {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+}
+
+.GoogleMarkerImage-image {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.ArtistBoxIcon {
+  display: inline;
+  font-size: 0.9em;
+  margin: 10px 10px;
+}
+
+.ArtistBoxIcon img {
+  width: 20px;
+  margin-bottom: -5px;
+  margin-right: 5px;
 }
 
 .TextWithIcon {
@@ -205,6 +285,7 @@ h1 {
 }
 
 .Modal-box {
+  display: block;
   position: relative;
   background: #555;
   width: 60%;
@@ -230,7 +311,7 @@ h1 {
 }
 
 .Modal-content {
-  display: flex;
+  display: block;
   justify-content: center;
   flex-wrap: wrap;
 }

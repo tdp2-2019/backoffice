@@ -1,7 +1,8 @@
 export const REQUEST_ARTISTS = "REQUEST_ARTISTS";
 export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 export const REQUEST_DRIVER = "REQUEST_DRIVER";
-
+export const REQUEST_TRIPS = "REQUEST_TRIPS";
+export const RECEIVE_TRIPS = "RECEIVE_TRIPS";
 
 export function requestArtists() {
     return {
@@ -9,6 +10,18 @@ export function requestArtists() {
     };
 }
 
+export function requestTrips() {
+    return {
+        type: REQUEST_TRIPS
+    };
+}
+
+export function receiveTrips(trips) {
+    return {
+        type: RECEIVE_TRIPS,
+        trips
+    };
+}
 
 export function requestDriver() {
     return {
@@ -26,15 +39,25 @@ export function receiveArtists(artists) {
 export function fetchArtists() {
     return dispatch => {
         dispatch(requestArtists());
+        console.log("FETCHEO DRIVERS");
 
        return fetch("https://correapp-api.herokuapp.com/drivers")
             .then(response => response.json())
             .then((drivers) => drivers.map(formatArtistData))
             .then(artists => dispatch(receiveArtists(artists)));
     };
+}
 
-// Helpers
 
+export function fetchTrips() {
+    return dispatch => {
+        dispatch(requestTrips());
+        console.log("FETCHEO TRIPS");
+        return   fetch("https://correapp-api.herokuapp.com/trips?status=started")
+            .then(response => response.json())
+            .then((trips) => trips.map(formatTripData))
+            .then(trips => dispatch(receiveTrips(trips)));
+    };
 }
 
 export function fetchDriverById(driverId) {
@@ -48,24 +71,18 @@ export function fetchDriverById(driverId) {
     };
 }
 
-// const formatArtistData = ({
-//                               id, name,
-//                               images,
-//                               photo_url, licensenumber, carcolour,
-//                               brand, carlicenseplate, address, dni, email, lastname, model, rating, signup_date, telephone
-//                           }) => ({
-//     id,
-//     name: name + " " + lastname,
-//     imageUrl: photo_url
-//         ? photo_url
-//         : `https://api.adorable.io/avatars/285/${id}`,
-//     followersCount: 0,
-//     genres: [],
-//     rating: rating,
-//     car: brand + " " + model + " " + carcolour,
-//     address: address,
-//     dni, carlicenseplate, email, signup_date, telephone
-// });
+
+
+const formatTripData = ({
+                            id,
+                            source,
+                            destination, driver_id, points, currentposition
+                        }) => ({
+    id,
+    source,
+    destination, driver_id, points, currentposition
+});
+
 
 const formatArtistData = ({
                               id, name,

@@ -16,6 +16,7 @@ import {
 } from "../store/selectors";
 import ArtistBox from "../components/ArtistBox";
 import DriversList from "../components/DriversList";
+import DriverBox from "../components/DriverBox";
 
 class DriverScreen extends Component {
 
@@ -46,7 +47,7 @@ class DriverScreen extends Component {
     render() {
         return (
           <div className="Screen">
-            <DriversList artists={[this.state.driver]} />
+              <DriverBox key={this.state.driver.id} artist={this.state.driver} />
           </div>
         );
 

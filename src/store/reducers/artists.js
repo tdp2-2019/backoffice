@@ -1,4 +1,4 @@
-import { REQUEST_ARTISTS, RECEIVE_ARTISTS } from "../actions/artists";
+import {REQUEST_ARTISTS, RECEIVE_ARTISTS, RECEIVE_TRIPS, REQUEST_TRIPS} from "../actions/artists";
 
 const defaultState = {
   data: [],
@@ -16,12 +16,34 @@ export default function artists(state = defaultState, action) {
 
     case RECEIVE_ARTISTS: {
       const { artists } = action;
+      console.log(action);
+      console.log(artists);
       return {
         ...state,
         isFetching: false,
         data: artists
       };
     }
+
+      case REQUEST_TRIPS: {
+          return {
+              ...state,
+              isFetching: true
+          };
+      }
+
+
+      case RECEIVE_TRIPS: {
+          const { trips } = action;
+          console.log(action);
+          console.log(trips);
+          return {
+              ...state,
+              isFetching: false,
+              data: trips
+          };
+      }
+
 
     default:
       return state;
